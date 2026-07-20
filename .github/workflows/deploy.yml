@@ -22,7 +22,7 @@ jobs:
 
       - name: Push backend image
         run: docker push ghcr.io/duubemmm/taskio-backend:latest
-        
+
       - name: Build frontend image
         run: docker build -t ghcr.io/duubemmm/taskio-frontend:latest ./frontend
 
@@ -34,7 +34,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "deploying..."
+      - name: SSH test
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            whoami
+            hostname
 
 
 
