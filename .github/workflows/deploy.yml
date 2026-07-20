@@ -22,6 +22,12 @@ jobs:
 
       - name: Push backend image
         run: docker push ghcr.io/duubemmm/taskio-backend:latest
+        
+      - name: Build frontend image
+        run: docker build -t ghcr.io/duubemmm/taskio-frontend:latest ./frontend
+
+      - name: Push frontend image
+        run: docker push ghcr.io/duubemmm/taskio-frontend:latest
 
   deploy:
     needs: build
