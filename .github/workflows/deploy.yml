@@ -16,6 +16,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build backend image
         run: docker build -t ghcr.io/duubemmm/task-manager-backend:latest ./backend
+      - name: Push backend image
+        run: docker push ghcr.io/duubemmm/task-manager-backend:latest
 
   deploy:
     needs: build
