@@ -16,7 +16,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
-    needs: build         
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
